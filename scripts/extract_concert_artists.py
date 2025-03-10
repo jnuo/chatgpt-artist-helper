@@ -35,10 +35,10 @@ def process_concerts():
             if corrected_artist and corrected_artist != old_artist:
                 row["Old Sanatçı Adı"] = old_artist  # Store old value
             row["Sanatçı Adı"] = corrected_artist  # Update artist name
-            row["Confirmed?"] = "0.8"  # Mark as processed
         else:
             row["Sanatçı Adı"] = ""  # Clear artist name if confidence is low
 
+        row["Confirmed?"] = "0.8"  # Mark as processed
         row["Confidence Score"] = confidence  # Store confidence score
 
         write_csv(CSV_FILE, data, fieldnames)
