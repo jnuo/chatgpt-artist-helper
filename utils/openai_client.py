@@ -11,13 +11,9 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 def get_chatgpt_response(prompt, model="gpt-4"):
     """ChatGPT API çağrısı yaparak yanıt döndürür."""
-    try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.2
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        print(f"OpenAI API error: {e}")
-        return None
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.2
+    )
+    return response.choices[0].message.content.strip()

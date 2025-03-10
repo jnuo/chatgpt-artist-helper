@@ -9,11 +9,20 @@ def process_standups():
     data = read_csv(CSV_FILE)
     fieldnames = list(data[0].keys())  # Convert dict_keys to list
 
-    if "Old Sanatçı Adı" not in fieldnames:
-        fieldnames.append("Old Sanatçı Adı")
+    # Ensure required columns exist
+    for col in ["Old Sanatçı Adı", "Confirmed?", "Confidence Score"]:
+        if col not in fieldnames:
+            fieldnames.append(col)
+            for row in data:
+                row[col] = ""  # Initialize empty values
 
     for index, row in enumerate(data):
-        if row["cat"] != "Stage" or row["subcat"] != "Standup":  # Only process stand-up shows
+        # Only process Stand-up shows
+        if row["cat"] != "Stage" or row["subcat"] != "Standup":
+            continue
+
+        # Skip already confirmed rows
+        if row.get("Confirmed?") in ["1", "0.8"]:
             continue
 
         old_artist = row["Sanatçı Adı"]
@@ -26,6 +35,7 @@ def process_standups():
             if corrected_artist and corrected_artist != old_artist:
                 row["Old Sanatçı Adı"] = old_artist  # Store old value
             row["Sanatçı Adı"] = corrected_artist  # Update performer name
+            row["Confirmed?"] = "0.8"  # Mark as processed
         else:
             row["Sanatçı Adı"] = ""  # Clear performer name if confidence is low
 
@@ -33,6 +43,8 @@ def process_standups():
 
         write_csv(CSV_FILE, data, fieldnames)
         print(f"✅ {row['name']} → {corrected_artist if confidence >= 0.75 else '❌ Not confident'} (Confidence: {confidence})")
+
+        time.sleep(15)
 
 if __name__ == "__main__":
     process_standups()
