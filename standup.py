@@ -14,24 +14,25 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY)  # New API client
 # Input CSV file (modifying in place)
 CSV_FILE = "artist.csv"
 
-# Function to call ChatGPT for artist name extraction
-def get_artist_name(event_name, event_desc, existing_artist):
+# Function to call ChatGPT for stand-up performer extraction
+def get_standup_performer(event_name, event_desc, existing_artist):
     prompt = f"""
 Event Name: "{event_name}"
 Event Description: "{event_desc}"
-Existing Artist Name: "{existing_artist}"
+Existing Performer Name: "{existing_artist}"
 
-Extract only the artist name(s) from the event. Ignore extra words like "feat.", "live", or instrument details.  
-If multiple artists exist, return only the names, comma-separated.  
-If the existing artist value is incorrect, correct it.  
-Also, provide a confidence score from 0 to 100 based on how sure you are.  
+Extract only the name(s) of the stand-up comedian(s) performing at this event.  
+Ignore words like "feat.", "live", "stand-up show", or venue details.  
+If multiple comedians are performing, return only their names, separated by commas.  
+If the existing value in 'Sanatçı Adı' is incorrect, correct it.  
+Provide a confidence score from 0 to 100 based on how sure you are.  
 
 Format response as:  
-Artist: [corrected artist names]  
+Performer: [corrected performer names]  
 Confidence: [confidence score]
 """
     try:
-        response = client.chat.completions.create(  # Updated API call
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2
@@ -40,13 +41,13 @@ Confidence: [confidence score]
         
         # Parse the response
         lines = text_response.split("\n")
-        artist_line = next((line for line in lines if line.startswith("Artist:")), "Artist: ")
+        performer_line = next((line for line in lines if line.startswith("Performer:")), "Performer: ")
         confidence_line = next((line for line in lines if line.startswith("Confidence:")), "Confidence: 0")
         
-        artist_names = artist_line.replace("Artist: ", "").strip()
+        performer_names = performer_line.replace("Performer: ", "").strip()
         confidence = confidence_line.replace("Confidence: ", "").strip()
 
-        return artist_names, confidence
+        return performer_names, confidence
     except Exception as e:
         print(f"Error processing {event_name}: {e}")
         return "", "0"
@@ -67,21 +68,20 @@ for index, row in enumerate(reader):
     existing_artist = row["Sanatçı Adı"]
     confirmed = row["Confirmed?"].strip()
     category = row["cat"].strip()  # Read the category column
-    subcategory = row["subcat"].strip()  # Read the category column
-    
-    # Skip rows that are already confirmed or not in "Concerts" category
-    if confirmed in ["1", "0.8"] or category != "Stage" or subcategory != "Standup":
+
+    # Skip rows that are already confirmed or not in "Stand-up" category
+    if confirmed in ["1", "0.8"] or category.lower() != "stand-up":
         continue
 
     # Skip empty event names
     if not event_name.strip():
         continue
 
-    # Get corrected artist name from ChatGPT (now with event description!)
-    corrected_artist, confidence = get_artist_name(event_name, event_desc, existing_artist)
+    # Get corrected performer name from ChatGPT
+    corrected_artist, confidence = get_standup_performer(event_name, event_desc, existing_artist)
 
-    # Update row with new values if no error and confidence is higher than 0.75
-    if corrected_artist and float(confidence) > 0.75:
+    # Update row only if confidence is above 75%
+    if corrected_artist and float(confidence) > 75:
         row["Sanatçı Adı"] = corrected_artist
         row["Confirmed?"] = "0.8"  # Mark as processed
     
@@ -96,6 +96,6 @@ for index, row in enumerate(reader):
     print(f"✅ Updated Row {index + 1}: {event_name} → {corrected_artist} (Confidence: {confidence})")
 
     # Wait 15 seconds before processing the next row
-    time.sleep(0.1)
+    time.sleep(15)
 
-print("🎉 All relevant 'Concerts' rows updated in the original file!")
+print("🎭 All relevant 'Stand-up' rows updated in the original file!")
