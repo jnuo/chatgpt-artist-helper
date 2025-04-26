@@ -10,7 +10,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 # def get_chatgpt_response(prompt, model="gpt-4"):
-def get_chatgpt_response(prompt, model="gpt-3.5-turbo"):
+def get_chatgpt_response(prompt, model="gpt-4o"):
     """ChatGPT API çağrısı yaparak yanıt döndürür."""
 
     response = client.chat.completions.create(

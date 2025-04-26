@@ -1,3 +1,14 @@
 artist.csv
 .env
 __pycache__/
+venv/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.log
+*.egg-info/
+etkoapp-ef99fa989d3a.json
+artist_old.csv

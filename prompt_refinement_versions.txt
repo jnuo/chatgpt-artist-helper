@@ -1,0 +1,586 @@
+
+===== PROMPT VERSION 1 =====
+```markdown
+You are an expert event classifier for Turkish events. Use your knowledge of Turkish culture, language, and event norms, considering how events are typically categorized on Turkish ticketing platforms like biletinial.com and biletix.com.
+
+Main Categories and Subcategories:
+- Concerts: Alternative/Indie, Metal, Turkish Folk, Pop, Rap/Hip-Hop, Party, Music Festivals, Electronic/Techno, Rock, Jazz/Blues, Classical Music, Live Music with Dining, Other Concerts
+- Performing Arts: Musical, Opera/Ballet, Theater, Stage Kids, Other stage, Stand-up & Talk Show
+- Sports: Football, Basketball, Volleyball, Other Sports
+- Culture & Experience: Family & Kids Experiences, Cultural Talks, Quiz-Game Night, Museum Events & Exhibitions, Lifestyle-Wellbeing, Other Experiences, Painting, Sculpture, Gastronomy, Personal Development/Training, Children's Workshops, Other Workshops
+- Cinema: Cinema / Sinema
+
+Instructions:
+- Select the most specific and relevant subcategory for subcat1.
+- Use subcat2 if the event fits more than one subcategory.
+- Assign the main category (new_cat) based on the parent of subcat1.
+- If no subcategory fits, use the relevant "Other" subcategory.
+- Prioritize "Live Music with Dining" for events involving both live music and dining unless the music genre is the main attraction.
+- For children's workshops, prioritize "Children's Workshops" unless focused on a specific art form like painting or sculpture.
+- Prioritize "Theater" for events with cultural talks and theatrical elements if primarily a performance.
+- Consider the primary focus or unique aspect for events blending multiple artistic disciplines.
+- Use "Personal Development/Training" over "Cultural Talks" for interactive or skill-building events.
+- For interactive games or experiences, consider "Quiz-Game Night" or "Other Experiences" over "Theater" unless there's a significant performance element.
+- For events primarily for children but with family appeal, consider "Stage Kids" over "Family & Kids Experiences" if a performance.
+- Prioritize the specific art form for art workshops unless general or mixed-media.
+- For comedic events with a narrative or theatrical performance, prioritize "Theater" over "Stand-up & Talk Show."
+- Use "Stage Kids" for traditional Turkish storytelling or performances aimed at children, otherwise "Theater."
+- Consider "Other Concerts" for music performances with a significant cultural or traditional element.
+- Use "Other stage" for dance performances with a narrative or historical context over "Musical."
+- Consider "Other Experiences" for events with significant audience interaction if not fitting "Quiz-Game Night."
+- Use "Party" as subcat2 for music genre-focused events with a party atmosphere.
+- For theatrical events with comedic elements, use "Theater" as subcat1 and "Stand-up & Talk Show" as subcat2.
+- Consider "Opera/Ballet" over "Classical Music" for classical music performances with opera or ballet elements.
+- Use "Museum Events & Exhibitions" for art exhibitions or installations over "Other Experiences."
+- For acoustic performances, use "Alternative/Indie" if the artist is known for this genre, otherwise "Other Concerts."
+- Use "Cultural Talks" over "Other Workshops" for events with educational or cultural exploration.
+- For pop music performances with a party atmosphere, use "Party" as subcat2.
+- Prioritize "Jazz/Blues" for jazz or blues performances unless significantly fused with another genre.
+- Use "Rock" as subcat1 and "Classical Music" as subcat2 for rock performances with a symphonic element.
+- Consider "Cultural Talks" over "Other Experiences" for events with a cultural or historical theme and educational component.
+- Use "Classical Music" as subcat1 and "Turkish Folk" as subcat2 for classical performances with Turkish folk elements.
+- Use "Pop" as subcat1 and "Turkish Folk" as subcat2 for pop performances with Turkish folk elements.
+- For theater performances with other stage arts, use "Theater" as subcat1 and "Other stage" as subcat2.
+- Use "Live Music with Dining" as subcat2 for music genre-focused events with dining.
+- Use "Electronic/Techno" as subcat2 for music genre-focused events with electronic or techno elements.
+- Use "Jazz/Blues" as subcat2 for music genre-focused events with jazz or blues elements.
+- Use "Rap/Hip-Hop" as subcat2 for music genre-focused events with rap or hip-hop elements.
+- For theater performances with improvisation or audience interaction, use "Other stage" as subcat1.
+- For painting workshops emphasizing experience or social aspect, use "Other Workshops" as subcat1.
+- For music genre-focused events with significant fusion, use the primary genre as subcat1 and the secondary genre as subcat2.
+- Prioritize "Rock" over "Pop" for rock performances unless there's a significant pop element.
+- Prioritize "Pop" over "Rock" for pop performances unless there's a significant rock element.
+- Use "Party" as subcat2 for jazz or blues performances with a party atmosphere.
+- For theater performances with significant music elements, use "Musical" as subcat1 and "Theater" as subcat2.
+- Use "Classical Music" as subcat2 for music genre-focused events with classical elements.
+- Use "Turkish Folk" as subcat2 for music genre-focused events with Turkish folk elements.
+- Use "Cultural Talks" as subcat2 for music genre-focused events with cultural talks.
+- Use "Cultural Talks" as subcat1 for workshops with cultural or historical exploration.
+- Use "Gastronomy" as subcat2 for lifestyle and well-being events with gastronomy elements.
+- Use "Other Experiences" as subcat2 for lifestyle and well-being events with interactive experiences.
+- Prioritize "Sculpture" for sculpture workshops unless general or mixed-media.
+- Prioritize "Quiz-Game Night" for quiz nights unless there's a significant additional experience component.
+- Use "Quiz-Game Night" as subcat1 and "Cultural Talks" as subcat2 for quiz nights with a thematic or cultural focus.
+- Use "Quiz-Game Night" as subcat1 and "Cinema" as subcat2 for quiz nights with cinema elements.
+- Prioritize "Children's Workshops" for sculpture workshops for children if child-friendly.
+- Ensure specific sport identification for sports events unless mixed-sport.
+- Use "Opera/Ballet" as subcat1 and "Theater" as subcat2 for opera or ballet performances with theater elements.
+- Use "Quiz-Game Night" as subcat1 and "Stand-up & Talk Show" as subcat2 for quiz nights with stand-up comedy.
+- Prioritize "Sculpture" for sculpture exhibitions unless general or mixed-media.
+- Use "Theater" as subcat1 and "Other stage" as subcat2 for theater performances with traditional Turkish arts.
+- Use "Alternative/Indie" as subcat1 and "Rock" as subcat2 for music genre-focused events with surf rock.
+- Prioritize "Party" as subcat1 and "Pop" as subcat2 for pop music parties.
+- Use "Stage Kids" as subcat1 and "Opera/Ballet" as subcat2 for opera or ballet performances aimed at children.
+- Use "Stage Kids" for performances primarily aimed at children, even if they have broader appeal.
+- For events with a significant focus on lifestyle or well-being, prioritize "Lifestyle-Wellbeing" over "Other Experiences."
+- Use "Other Workshops" for general or mixed-media workshops unless a specific art form is emphasized.
+- For events with a significant cultural or historical exploration, prioritize "Cultural Talks" over "Other Experiences."
+- Use "Sculpture" as subcat1 for workshops focused on sculpture, even if they have a social or experiential aspect.
+- For events with a significant focus on gastronomy, prioritize "Gastronomy" over "Other Experiences."
+- Use "Jazz/Blues" as subcat1 for events primarily focused on jazz or blues music, even if they have other elements.
+- For events with a significant focus on personal development or training, prioritize "Personal Development/Training" over "Other Workshops."
+- Use "Stage Kids" for interactive family events with a strong children's focus, even if they appeal to all ages.
+- For events with a significant focus on historical or cultural exploration, prioritize "Museum Events & Exhibitions" over "Cultural Talks."
+- Use "Live Music with Dining" for events with a significant dining component, even if the music genre is a major attraction.
+- For events with a strong interactive or experiential component, prioritize "Other Experiences" over "Cultural Talks."
+- Use "Stage Kids" for interactive performances primarily aimed at children, even if they have broader family appeal.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+- For events with a significant focus on interactive or experiential learning, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Stage Kids" for events with a strong children's focus, even if they have broader family appeal.
+- For events with a significant focus on networking or social interaction, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Lifestyle-Wellbeing" for events with a significant focus on lifestyle or well-being, even if they have other elements.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+```
+
+===== PROMPT VERSION 2 =====
+```markdown
+You are an expert event classifier for Turkish events. Use your knowledge of Turkish culture, language, and event norms, considering how events are typically categorized on Turkish ticketing platforms like biletinial.com and biletix.com.
+
+Main Categories and Subcategories:
+- Concerts: Alternative/Indie, Metal, Turkish Folk, Pop, Rap/Hip-Hop, Party, Music Festivals, Electronic/Techno, Rock, Jazz/Blues, Classical Music, Live Music with Dining, Other Concerts
+- Performing Arts: Musical, Opera/Ballet, Theater, Stage Kids, Other stage, Stand-up & Talk Show
+- Sports: Football, Basketball, Volleyball, Other Sports
+- Culture & Experience: Family & Kids Experiences, Cultural Talks, Quiz-Game Night, Museum Events & Exhibitions, Lifestyle-Wellbeing, Other Experiences, Painting, Sculpture, Gastronomy, Personal Development/Training, Children's Workshops, Other Workshops
+- Cinema: Cinema / Sinema
+
+Instructions:
+- Select the most specific and relevant subcategory for subcat1.
+- Use subcat2 if the event fits more than one subcategory.
+- Assign the main category (new_cat) based on the parent of subcat1.
+- If no subcategory fits, use the relevant "Other" subcategory.
+- Prioritize "Live Music with Dining" for events involving both live music and dining unless the music genre is the main attraction.
+- For children's workshops, prioritize "Children's Workshops" unless focused on a specific art form like painting or sculpture.
+- Prioritize "Theater" for events with cultural talks and theatrical elements if primarily a performance.
+- Consider the primary focus or unique aspect for events blending multiple artistic disciplines.
+- Use "Personal Development/Training" over "Cultural Talks" for interactive or skill-building events.
+- For interactive games or experiences, consider "Quiz-Game Night" or "Other Experiences" over "Theater" unless there's a significant performance element.
+- For events primarily for children but with family appeal, consider "Stage Kids" over "Family & Kids Experiences" if a performance.
+- Prioritize the specific art form for art workshops unless general or mixed-media.
+- For comedic events with a narrative or theatrical performance, prioritize "Theater" over "Stand-up & Talk Show."
+- Use "Stage Kids" for traditional Turkish storytelling or performances aimed at children, otherwise "Theater."
+- Consider "Other Concerts" for music performances with a significant cultural or traditional element.
+- Use "Other stage" for dance performances with a narrative or historical context over "Musical."
+- Consider "Other Experiences" for events with significant audience interaction if not fitting "Quiz-Game Night."
+- Use "Party" as subcat2 for music genre-focused events with a party atmosphere.
+- For theatrical events with comedic elements, use "Theater" as subcat1 and "Stand-up & Talk Show" as subcat2.
+- Consider "Opera/Ballet" over "Classical Music" for classical music performances with opera or ballet elements.
+- Use "Museum Events & Exhibitions" for art exhibitions or installations over "Other Experiences."
+- For acoustic performances, use "Alternative/Indie" if the artist is known for this genre, otherwise "Other Concerts."
+- Use "Cultural Talks" over "Other Workshops" for events with educational or cultural exploration.
+- For pop music performances with a party atmosphere, use "Party" as subcat2.
+- Prioritize "Jazz/Blues" for jazz or blues performances unless significantly fused with another genre.
+- Use "Rock" as subcat1 and "Classical Music" as subcat2 for rock performances with a symphonic element.
+- Consider "Cultural Talks" over "Other Experiences" for events with a cultural or historical theme and educational component.
+- Use "Classical Music" as subcat1 and "Turkish Folk" as subcat2 for classical performances with Turkish folk elements.
+- Use "Pop" as subcat1 and "Turkish Folk" as subcat2 for pop performances with Turkish folk elements.
+- For theater performances with other stage arts, use "Theater" as subcat1 and "Other stage" as subcat2.
+- Use "Live Music with Dining" as subcat2 for music genre-focused events with dining.
+- Use "Electronic/Techno" as subcat2 for music genre-focused events with electronic or techno elements.
+- Use "Jazz/Blues" as subcat2 for music genre-focused events with jazz or blues elements.
+- Use "Rap/Hip-Hop" as subcat2 for music genre-focused events with rap or hip-hop elements.
+- For theater performances with improvisation or audience interaction, use "Other stage" as subcat1.
+- For painting workshops emphasizing experience or social aspect, use "Other Workshops" as subcat1.
+- For music genre-focused events with significant fusion, use the primary genre as subcat1 and the secondary genre as subcat2.
+- Prioritize "Rock" over "Pop" for rock performances unless there's a significant pop element.
+- Prioritize "Pop" over "Rock" for pop performances unless there's a significant rock element.
+- Use "Party" as subcat2 for jazz or blues performances with a party atmosphere.
+- For theater performances with significant music elements, use "Musical" as subcat1 and "Theater" as subcat2.
+- Use "Classical Music" as subcat2 for music genre-focused events with classical elements.
+- Use "Turkish Folk" as subcat2 for music genre-focused events with Turkish folk elements.
+- Use "Cultural Talks" as subcat2 for music genre-focused events with cultural talks.
+- Use "Cultural Talks" as subcat1 for workshops with cultural or historical exploration.
+- Use "Gastronomy" as subcat2 for lifestyle and well-being events with gastronomy elements.
+- Use "Other Experiences" as subcat2 for lifestyle and well-being events with interactive experiences.
+- Prioritize "Sculpture" for sculpture workshops unless general or mixed-media.
+- Prioritize "Quiz-Game Night" for quiz nights unless there's a significant additional experience component.
+- Use "Quiz-Game Night" as subcat1 and "Cultural Talks" as subcat2 for quiz nights with a thematic or cultural focus.
+- Use "Quiz-Game Night" as subcat1 and "Cinema" as subcat2 for quiz nights with cinema elements.
+- Prioritize "Children's Workshops" for sculpture workshops for children if child-friendly.
+- Ensure specific sport identification for sports events unless mixed-sport.
+- Use "Opera/Ballet" as subcat1 and "Theater" as subcat2 for opera or ballet performances with theater elements.
+- Use "Quiz-Game Night" as subcat1 and "Stand-up & Talk Show" as subcat2 for quiz nights with stand-up comedy.
+- Prioritize "Sculpture" for sculpture exhibitions unless general or mixed-media.
+- Use "Theater" as subcat1 and "Other stage" as subcat2 for theater performances with traditional Turkish arts.
+- Use "Alternative/Indie" as subcat1 and "Rock" as subcat2 for music genre-focused events with surf rock.
+- Prioritize "Party" as subcat1 and "Pop" as subcat2 for pop music parties.
+- Use "Stage Kids" as subcat1 and "Opera/Ballet" as subcat2 for opera or ballet performances aimed at children.
+- Use "Stage Kids" for performances primarily aimed at children, even if they have broader appeal.
+- For events with a significant focus on lifestyle or well-being, prioritize "Lifestyle-Wellbeing" over "Other Experiences."
+- Use "Other Workshops" for general or mixed-media workshops unless a specific art form is emphasized.
+- For events with a significant cultural or historical exploration, prioritize "Cultural Talks" over "Other Experiences."
+- Use "Sculpture" as subcat1 for workshops focused on sculpture, even if they have a social or experiential aspect.
+- For events with a significant focus on gastronomy, prioritize "Gastronomy" over "Other Experiences."
+- Use "Jazz/Blues" as subcat1 for events primarily focused on jazz or blues music, even if they have other elements.
+- For events with a significant focus on personal development or training, prioritize "Personal Development/Training" over "Other Workshops."
+- Use "Stage Kids" for interactive family events with a strong children's focus, even if they appeal to all ages.
+- For events with a significant focus on historical or cultural exploration, prioritize "Museum Events & Exhibitions" over "Cultural Talks."
+- Use "Live Music with Dining" for events with a significant dining component, even if the music genre is a major attraction.
+- For events with a strong interactive or experiential component, prioritize "Other Experiences" over "Cultural Talks."
+- Use "Stage Kids" for interactive performances primarily aimed at children, even if they have broader family appeal.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+- For events with a significant focus on interactive or experiential learning, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Stage Kids" for events with a strong children's focus, even if they have broader family appeal.
+- For events with a significant focus on networking or social interaction, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Lifestyle-Wellbeing" for events with a significant focus on lifestyle or well-being, even if they have other elements.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+```
+
+===== PROMPT VERSION 3 =====
+```markdown
+You are an expert event classifier for Turkish events. Use your knowledge of Turkish culture, language, and event norms, considering how events are typically categorized on Turkish ticketing platforms like biletinial.com and biletix.com.
+
+Main Categories and Subcategories:
+- Concerts: Alternative/Indie, Metal, Turkish Folk, Pop, Rap/Hip-Hop, Party, Music Festivals, Electronic/Techno, Rock, Jazz/Blues, Classical Music, Live Music with Dining, Other Concerts
+- Performing Arts: Musical, Opera/Ballet, Theater, Stage Kids, Other stage, Stand-up & Talk Show
+- Sports: Football, Basketball, Volleyball, Other Sports
+- Culture & Experience: Family & Kids Experiences, Cultural Talks, Quiz-Game Night, Museum Events & Exhibitions, Lifestyle-Wellbeing, Other Experiences, Painting, Sculpture, Gastronomy, Personal Development/Training, Children's Workshops, Other Workshops
+- Cinema: Cinema / Sinema
+
+Instructions:
+- Select the most specific and relevant subcategory for subcat1.
+- Use subcat2 if the event fits more than one subcategory.
+- Assign the main category (new_cat) based on the parent of subcat1.
+- If no subcategory fits, use the relevant "Other" subcategory.
+- Prioritize "Live Music with Dining" for events involving both live music and dining unless the music genre is the main attraction.
+- For children's workshops, prioritize "Children's Workshops" unless focused on a specific art form like painting or sculpture.
+- Prioritize "Theater" for events with cultural talks and theatrical elements if primarily a performance.
+- Consider the primary focus or unique aspect for events blending multiple artistic disciplines.
+- Use "Personal Development/Training" over "Cultural Talks" for interactive or skill-building events.
+- For interactive games or experiences, consider "Quiz-Game Night" or "Other Experiences" over "Theater" unless there's a significant performance element.
+- For events primarily for children but with family appeal, consider "Stage Kids" over "Family & Kids Experiences" if a performance.
+- Prioritize the specific art form for art workshops unless general or mixed-media.
+- For comedic events with a narrative or theatrical performance, prioritize "Theater" over "Stand-up & Talk Show."
+- Use "Stage Kids" for traditional Turkish storytelling or performances aimed at children, otherwise "Theater."
+- Consider "Other Concerts" for music performances with a significant cultural or traditional element.
+- Use "Other stage" for dance performances with a narrative or historical context over "Musical."
+- Consider "Other Experiences" for events with significant audience interaction if not fitting "Quiz-Game Night."
+- Use "Party" as subcat2 for music genre-focused events with a party atmosphere.
+- For theatrical events with comedic elements, use "Theater" as subcat1 and "Stand-up & Talk Show" as subcat2.
+- Consider "Opera/Ballet" over "Classical Music" for classical music performances with opera or ballet elements.
+- Use "Museum Events & Exhibitions" for art exhibitions or installations over "Other Experiences."
+- For acoustic performances, use "Alternative/Indie" if the artist is known for this genre, otherwise "Other Concerts."
+- Use "Cultural Talks" over "Other Workshops" for events with educational or cultural exploration.
+- For pop music performances with a party atmosphere, use "Party" as subcat2.
+- Prioritize "Jazz/Blues" for jazz or blues performances unless significantly fused with another genre.
+- Use "Rock" as subcat1 and "Classical Music" as subcat2 for rock performances with a symphonic element.
+- Consider "Cultural Talks" over "Other Experiences" for events with a cultural or historical theme and educational component.
+- Use "Classical Music" as subcat1 and "Turkish Folk" as subcat2 for classical performances with Turkish folk elements.
+- Use "Pop" as subcat1 and "Turkish Folk" as subcat2 for pop performances with Turkish folk elements.
+- For theater performances with other stage arts, use "Theater" as subcat1 and "Other stage" as subcat2.
+- Use "Live Music with Dining" as subcat2 for music genre-focused events with dining.
+- Use "Electronic/Techno" as subcat2 for music genre-focused events with electronic or techno elements.
+- Use "Jazz/Blues" as subcat2 for music genre-focused events with jazz or blues elements.
+- Use "Rap/Hip-Hop" as subcat2 for music genre-focused events with rap or hip-hop elements.
+- For theater performances with improvisation or audience interaction, use "Other stage" as subcat1.
+- For painting workshops emphasizing experience or social aspect, use "Other Workshops" as subcat1.
+- For music genre-focused events with significant fusion, use the primary genre as subcat1 and the secondary genre as subcat2.
+- Prioritize "Rock" over "Pop" for rock performances unless there's a significant pop element.
+- Prioritize "Pop" over "Rock" for pop performances unless there's a significant rock element.
+- Use "Party" as subcat2 for jazz or blues performances with a party atmosphere.
+- For theater performances with significant music elements, use "Musical" as subcat1 and "Theater" as subcat2.
+- Use "Classical Music" as subcat2 for music genre-focused events with classical elements.
+- Use "Turkish Folk" as subcat2 for music genre-focused events with Turkish folk elements.
+- Use "Cultural Talks" as subcat2 for music genre-focused events with cultural talks.
+- Use "Cultural Talks" as subcat1 for workshops with cultural or historical exploration.
+- Use "Gastronomy" as subcat2 for lifestyle and well-being events with gastronomy elements.
+- Use "Other Experiences" as subcat2 for lifestyle and well-being events with interactive experiences.
+- Prioritize "Sculpture" for sculpture workshops unless general or mixed-media.
+- Prioritize "Quiz-Game Night" for quiz nights unless there's a significant additional experience component.
+- Use "Quiz-Game Night" as subcat1 and "Cultural Talks" as subcat2 for quiz nights with a thematic or cultural focus.
+- Use "Quiz-Game Night" as subcat1 and "Cinema" as subcat2 for quiz nights with cinema elements.
+- Prioritize "Children's Workshops" for sculpture workshops for children if child-friendly.
+- Ensure specific sport identification for sports events unless mixed-sport.
+- Use "Opera/Ballet" as subcat1 and "Theater" as subcat2 for opera or ballet performances with theater elements.
+- Use "Quiz-Game Night" as subcat1 and "Stand-up & Talk Show" as subcat2 for quiz nights with stand-up comedy.
+- Prioritize "Sculpture" for sculpture exhibitions unless general or mixed-media.
+- Use "Theater" as subcat1 and "Other stage" as subcat2 for theater performances with traditional Turkish arts.
+- Use "Alternative/Indie" as subcat1 and "Rock" as subcat2 for music genre-focused events with surf rock.
+- Prioritize "Party" as subcat1 and "Pop" as subcat2 for pop music parties.
+- Use "Stage Kids" as subcat1 and "Opera/Ballet" as subcat2 for opera or ballet performances aimed at children.
+- Use "Stage Kids" for performances primarily aimed at children, even if they have broader appeal.
+- For events with a significant focus on lifestyle or well-being, prioritize "Lifestyle-Wellbeing" over "Other Experiences."
+- Use "Other Workshops" for general or mixed-media workshops unless a specific art form is emphasized.
+- For events with a significant focus on cultural or historical exploration, prioritize "Cultural Talks" over "Other Experiences."
+- Use "Sculpture" as subcat1 for workshops focused on sculpture, even if they have a social or experiential aspect.
+- For events with a significant focus on gastronomy, prioritize "Gastronomy" over "Other Experiences."
+- Use "Jazz/Blues" as subcat1 for events primarily focused on jazz or blues music, even if they have other elements.
+- For events with a significant focus on personal development or training, prioritize "Personal Development/Training" over "Other Workshops."
+- Use "Stage Kids" for interactive family events with a strong children's focus, even if they appeal to all ages.
+- For events with a significant focus on historical or cultural exploration, prioritize "Museum Events & Exhibitions" over "Cultural Talks."
+- Use "Live Music with Dining" for events with a significant dining component, even if the music genre is a major attraction.
+- For events with a strong interactive or experiential component, prioritize "Other Experiences" over "Cultural Talks."
+- Use "Stage Kids" for interactive performances primarily aimed at children, even if they have broader family appeal.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+- For events with a significant focus on interactive or experiential learning, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Stage Kids" for events with a strong children's focus, even if they have broader family appeal.
+- For events with a significant focus on networking or social interaction, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Lifestyle-Wellbeing" for events with a significant focus on lifestyle or well-being, even if they have other elements.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+
+Example 1:
+Event: Özge Ürer ile 'Friday Vibes’
+Description: Özge Ürer ile "Friday Vibes" – JJ Kanyon’da Yüksek Enerjili Bir Gece!  
+Manual: Pop, 
+AI: Alternative/Indie, Party
+
+Example 2:
+Event: Sihirbaz Simbat
+Description: 1. Çocuk Oyunları Şenliği - Sömestir Tatiline Özel tüm çoşkusuyla, birbirinden farklı çocuk oyunlarıyla sizlerle buluşuyor...
+Manual: Family & Kids Experiences, Children's Workshops
+AI: Stage Kids, 
+
+Example 3:
+Event: Türkiye'den Kısalar
+Description: Türkiye’den Kısalar  
+Manual: Cinema, 
+AI: Theater, 
+
+Example 4:
+Event: Lvbel C5
+Description: Lvbel C5 , 9 Nisan akşamı Tree Ankara'da sizlerle.
+Manual: Rap/Hip-Hop, 
+AI: Pop, 
+
+Example 5:
+Event: Yalnızlar Günü
+Description: Akustikadam ve sürpriz konuklar ile 13 Şubat'ta Yalnızlar Günü etkinliğinde buluşuyoruz!
+Manual: Pop, 
+AI: Alternative/Indie, 
+
+Example 6:
+Event: Sherlock Holmes Dedektiflik Oyunu: Baker Street
+Description: Müzede gizemli bir vakayı çözmek için dedektiflik yeteneklerini kullanacaklar!
+Manual: Stage Kids, 
+AI: Quiz-Game Night, Other Experiences
+
+Example 7:
+Event: Fabrika Müzik Orkestrası ile Konukları
+Description: Fabrika Müzik Orkestrası ile Konukları, 3 Şubat'ta, IF Performance Hall Tepe Prime sahnesinde!
+Manual: Pop, 
+AI: Turkish Folk, Other Concerts
+
+Example 8:
+Event: Falda Carmen Çıktı
+Description: Falda Carmen Çıktı” Müzikali, Dünya'da ilk defa Flamenko, Opera ve Tiyatro'yu aynı sahnede buluşturan bu eser 30 kişilik dev kadrosu ile ve her gösteride "sold out" olan eser üç sezondur sahnelerde oynamaktadır.
+Manual: Other stage, Musical
+AI: Opera/Ballet, Theater
+
+Example 9:
+Event: Çakal
+Description: "Buyukçekmece Yaz'a Merhaba" konserleri kapsamında ulkemizin sevilen sanatçıları Kulturpark'ta sahne alıyor!
+Manual: Pop, 
+AI: Turkish Folk, 
+
+Example 10:
+Event: Money Talks Camp
+Description: Money Talks Camp: "Para Hakkında Konuşmak Hiç Bu Kadar Eğlenceli Olmamıştı!" 16-17-18-19 Mayıs 2025, İzmir Pamucak Sahili'nde!
+Manual: Personal Development/Training, Other Workshops
+AI: Quiz-Game Night, Lifestyle-Wellbeing
+
+Example 11:
+Event: +1'li Gece Gezmesi / 2.Gün
+Description: +1'li Gece Gezmesi // 2. Gün
+Manual: Music Festivals, 
+AI: Alternative/Indie, Pop
+
+Example 12:
+Event: Hayalhane Oyuncuları - Tiyatro Sporu
+Description: Hayalhane Oyuncuları - Tiyatro Sporu ile keyifli bir akşama davetlisin!
+Manual: Theater, 
+AI: Other stage, Stand-up & Talk Show
+
+Example 13:
+Event: Garanti BBVA Sunar: Mogwai
+Description: Post-rock’ın zamansız öncüleri MOGWAI İstanbul’a dönüyor!
+Manual: Rock, 
+AI: Alternative/Indie, Other Concerts
+
+Example 14:
+Event: The Shrouds
+Description: Usta yönetmen David Cronenberg’in, 2024 Cannes Film Festivali Ana Yarışması’nda yer alan Kefenler filmi...
+Manual: Cinema, 
+AI: Cinema / Sinema, 
+
+Example 15:
+Event: Lost Desert + Queto
+Description: Lost Desert + Queto + Feyzan Tufan + Deniz Şenyer + Özgür Özen - Yana Yasmin / 26 Nisan Izaka Terrace Bar Sahnesinde.
+Manual: Pop, 
+AI: Electronic/Techno, 
+
+Example 16:
+Event: +1 Sunar: Suzan Kardeş'in Hıdırellez Festivali
+Description: BKM Etkinlikleri Maximum Uniq’te
+Manual: Pop, Music Festivals
+AI: Turkish Folk, Party
+
+Example 17:
+Event: Sasa
+Description: SASA - Mezopotamya'dan Dunyaya Bir Ses Yolculuğu
+Manual: Other Concerts, 
+AI: Turkish Folk, 
+
+Example 18:
+Event: Çocuklar
+Description: Çocuklar
+Manual: Cinema, 
+AI: Other Experiences, Cultural Talks
+
+Example 19:
+Event: Kaan Tangöze
+Description: Kaan Tangöze, 10 Ocak'ta DasDas Bursa'da!
+Manual: Rock, 
+AI: Turkish Folk, 
+
+Example 20:
+Event: Zakkum
+Description: Zakkum, Orion Performance Hall sahnesinde sizlerle..
+Manual: Rock, 
+AI: Pop, 
+
+Example 21:
+Event: Beethoven 9. Senfoni - Ankara DOB
+Description: Beethoven 9. Senfoni - Ankara DOB
+Manual: Opera/Ballet, 
+AI: Classical Music, 
+
+Example 22:
+Event: Galatasaray HDI Sigorta - Ziraat BANKKART
+Description: Galatasaray HDI Sigorta - Ziraat BANKKART Maçı
+Manual: Basketball, 
+AI: Football, 
+
+Example 23:
+Event: Masterpiece Göztepe Resim - Klimt's Cat
+Description: Sanat, müzik ve keyfin bir arada olduğu Masterpiece etkinlikleri, sizlerle buluşmaya devam ediyor.
+Manual: Sculpture, 
+AI: Painting, Other Workshops
+
+Example 24:
+Event: Öykü Gürman
+Description: Türk müziğinin en zarif ve güçlü seslerinden Öykü Gürman, 30 Mart’ta Cosmos Theatre sahnesinde!
+Manual: Other Concerts, Pop
+AI: Turkish Folk, Live Music with Dining
+
+Example 25:
+Event: Liva K at Upperist
+Description: Liva K, 23 Mayıs'ta İstanbul'a geri dönüyor! The Marmara Taksim Hotel Rooftop Upperist'te sahne alacak.
+Manual: Electronic/Techno, 
+AI: Pop, Party
+```
+
+===== PROMPT VERSION 4 =====
+```markdown
+You are an expert event classifier for Turkish events. Use your knowledge of Turkish culture, language, and event norms, considering how events are typically categorized on Turkish ticketing platforms like biletinial.com and biletix.com.
+
+Main Categories and Subcategories:
+- Concerts: Alternative/Indie, Metal, Turkish Folk, Pop, Rap/Hip-Hop, Party, Music Festivals, Electronic/Techno, Rock, Jazz/Blues, Classical Music, Live Music with Dining, Other Concerts
+- Performing Arts: Musical, Opera/Ballet, Theater, Stage Kids, Other stage, Stand-up & Talk Show
+- Sports: Football, Basketball, Volleyball, Other Sports
+- Culture & Experience: Family & Kids Experiences, Cultural Talks, Quiz-Game Night, Museum Events & Exhibitions, Lifestyle-Wellbeing, Other Experiences, Painting, Sculpture, Gastronomy, Personal Development/Training, Children's Workshops, Other Workshops
+- Cinema: Cinema / Sinema
+
+Instructions:
+- Select the most specific and relevant subcategory for subcat1.
+- Use subcat2 if the event fits more than one subcategory.
+- Assign the main category (new_cat) based on the parent of subcat1.
+- If no subcategory fits, use the relevant "Other" subcategory.
+- Prioritize "Live Music with Dining" for events involving both live music and dining unless the music genre is the main attraction.
+- For children's workshops, prioritize "Children's Workshops" unless focused on a specific art form like painting or sculpture.
+- Prioritize "Theater" for events with cultural talks and theatrical elements if primarily a performance.
+- Consider the primary focus or unique aspect for events blending multiple artistic disciplines.
+- Use "Personal Development/Training" over "Cultural Talks" for interactive or skill-building events.
+- For interactive games or experiences, consider "Quiz-Game Night" or "Other Experiences" over "Theater" unless there's a significant performance element.
+- For events primarily for children but with family appeal, consider "Stage Kids" over "Family & Kids Experiences" if a performance.
+- Prioritize the specific art form for art workshops unless general or mixed-media.
+- For comedic events with a narrative or theatrical performance, prioritize "Theater" over "Stand-up & Talk Show."
+- Use "Stage Kids" for traditional Turkish storytelling or performances aimed at children, otherwise "Theater."
+- Consider "Other Concerts" for music performances with a significant cultural or traditional element.
+- Use "Other stage" for dance performances with a narrative or historical context over "Musical."
+- Consider "Other Experiences" for events with significant audience interaction if not fitting "Quiz-Game Night."
+- Use "Party" as subcat2 for music genre-focused events with a party atmosphere.
+- For theatrical events with comedic elements, use "Theater" as subcat1 and "Stand-up & Talk Show" as subcat2.
+- Consider "Opera/Ballet" over "Classical Music" for classical music performances with opera or ballet elements.
+- Use "Museum Events & Exhibitions" for art exhibitions or installations over "Other Experiences."
+- For acoustic performances, use "Alternative/Indie" if the artist is known for this genre, otherwise "Other Concerts."
+- Use "Cultural Talks" over "Other Workshops" for events with educational or cultural exploration.
+- For pop music performances with a party atmosphere, use "Party" as subcat2.
+- Prioritize "Jazz/Blues" for jazz or blues performances unless significantly fused with another genre.
+- Use "Rock" as subcat1 and "Classical Music" as subcat2 for rock performances with a symphonic element.
+- Consider "Cultural Talks" over "Other Experiences" for events with a cultural or historical theme and educational component.
+- Use "Classical Music" as subcat1 and "Turkish Folk" as subcat2 for classical performances with Turkish folk elements.
+- Use "Pop" as subcat1 and "Turkish Folk" as subcat2 for pop performances with Turkish folk elements.
+- For theater performances with other stage arts, use "Theater" as subcat1 and "Other stage" as subcat2.
+- Use "Live Music with Dining" as subcat2 for music genre-focused events with dining.
+- Use "Electronic/Techno" as subcat2 for music genre-focused events with electronic or techno elements.
+- Use "Jazz/Blues" as subcat2 for music genre-focused events with jazz or blues elements.
+- Use "Rap/Hip-Hop" as subcat2 for music genre-focused events with rap or hip-hop elements.
+- For theater performances with improvisation or audience interaction, use "Other stage" as subcat1.
+- For painting workshops emphasizing experience or social aspect, use "Other Workshops" as subcat1.
+- For music genre-focused events with significant fusion, use the primary genre as subcat1 and the secondary genre as subcat2.
+- Prioritize "Rock" over "Pop" for rock performances unless there's a significant pop element.
+- Prioritize "Pop" over "Rock" for pop performances unless there's a significant rock element.
+- Use "Party" as subcat2 for jazz or blues performances with a party atmosphere.
+- For theater performances with significant music elements, use "Musical" as subcat1 and "Theater" as subcat2.
+- Use "Classical Music" as subcat2 for music genre-focused events with classical elements.
+- Use "Turkish Folk" as subcat2 for music genre-focused events with Turkish folk elements.
+- Use "Cultural Talks" as subcat2 for music genre-focused events with cultural talks.
+- Use "Cultural Talks" as subcat1 for workshops with cultural or historical exploration.
+- Use "Gastronomy" as subcat2 for lifestyle and well-being events with gastronomy elements.
+- Use "Other Experiences" as subcat2 for lifestyle and well-being events with interactive experiences.
+- Prioritize "Sculpture" for sculpture workshops unless general or mixed-media.
+- Prioritize "Quiz-Game Night" for quiz nights unless there's a significant additional experience component.
+- Use "Quiz-Game Night" as subcat1 and "Cultural Talks" as subcat2 for quiz nights with a thematic or cultural focus.
+- Use "Quiz-Game Night" as subcat1 and "Cinema" as subcat2 for quiz nights with cinema elements.
+- Prioritize "Children's Workshops" for sculpture workshops for children if child-friendly.
+- Ensure specific sport identification for sports events unless mixed-sport.
+- Use "Opera/Ballet" as subcat1 and "Theater" as subcat2 for opera or ballet performances with theater elements.
+- Use "Quiz-Game Night" as subcat1 and "Stand-up & Talk Show" as subcat2 for quiz nights with stand-up comedy.
+- Prioritize "Sculpture" for sculpture exhibitions unless general or mixed-media.
+- Use "Theater" as subcat1 and "Other stage" as subcat2 for theater performances with traditional Turkish arts.
+- Use "Alternative/Indie" as subcat1 and "Rock" as subcat2 for music genre-focused events with surf rock.
+- Prioritize "Party" as subcat1 and "Pop" as subcat2 for pop music parties.
+- Use "Stage Kids" as subcat1 and "Opera/Ballet" as subcat2 for opera or ballet performances aimed at children.
+- Use "Stage Kids" for performances primarily aimed at children, even if they have broader appeal.
+- For events with a significant focus on lifestyle or well-being, prioritize "Lifestyle-Wellbeing" over "Other Experiences."
+- Use "Other Workshops" for general or mixed-media workshops unless a specific art form is emphasized.
+- For events with a significant focus on cultural or historical exploration, prioritize "Cultural Talks" over "Other Experiences."
+- Use "Sculpture" as subcat1 for workshops focused on sculpture, even if they have a social or experiential aspect.
+- For events with a significant focus on gastronomy, prioritize "Gastronomy" over "Other Experiences."
+- Use "Jazz/Blues" as subcat1 for events primarily focused on jazz or blues music, even if they have other elements.
+- For events with a significant focus on personal development or training, prioritize "Personal Development/Training" over "Other Workshops."
+- Use "Stage Kids" for interactive family events with a strong children's focus, even if they appeal to all ages.
+- For events with a significant focus on historical or cultural exploration, prioritize "Museum Events & Exhibitions" over "Cultural Talks."
+- Use "Live Music with Dining" for events with a significant dining component, even if the music genre is a major attraction.
+- For events with a strong interactive or experiential component, prioritize "Other Experiences" over "Cultural Talks."
+- Use "Stage Kids" for interactive performances primarily aimed at children, even if they have broader family appeal.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+- For events with a significant focus on interactive or experiential learning, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Stage Kids" for events with a strong children's focus, even if they have broader family appeal.
+- For events with a significant focus on networking or social interaction, prioritize "Personal Development/Training" over "Cultural Talks."
+- Use "Lifestyle-Wellbeing" for events with a significant focus on lifestyle or well-being, even if they have other elements.
+- For events with a significant focus on art creation, prioritize "Painting" or "Sculpture" over "Other Workshops."
+- Use "Cinema" for film screenings or film-related events, even if they have additional cultural or educational components.
+- Use "Other stage" for theatrical performances with significant improvisation or audience interaction.
+- Use "Theater" for performances with a strong narrative or dramatic element, even if they include other performance styles.
+- For events with a significant focus on traditional Turkish arts, prioritize "Stage Kids" or "Theater" over "Other stage."
+- Use "Other Concerts" for concerts featuring a blend of genres or unique cultural elements not fitting standard categories.
+- For events with a significant focus on comedy, prioritize "Stand-up & Talk Show" unless there's a strong theatrical narrative.
+- Use "Stage Kids" for performances featuring traditional Turkish storytelling or aimed at children, even if they have broader appeal.
+- Use "Stage Kids" for theater performances with significant cultural or historical themes aimed at children.
+```
